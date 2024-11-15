@@ -1,5 +1,6 @@
 import { IoCarOutline } from 'react-icons/io5'
 import './LoginTemplate.scss'
+import LoginForm from '@/app/components/organisms/Forms/LoginForm'
 
 const LoginTemplate = () => {
   return (
@@ -10,6 +11,7 @@ const LoginTemplate = () => {
             <h1 className='login-h1'>Tranport Solutions S.A</h1>
         </div>
         <p>Inicia sesion en tu cuenta y gestiona tu flota de vehiculos</p>
+        <LoginForm/>
       </div>
     </div>
   )
