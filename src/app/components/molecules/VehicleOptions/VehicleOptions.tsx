@@ -22,7 +22,7 @@ const VehicleOptions = () => {
 
         {modal && 
             <Modal propFunction={closeModal}>
-              <VehicleForm propFunction={closeModal}/>
+              <VehicleForm action='add' propFunction={closeModal}/>
             </Modal>
           }
     </div>

@@ -17,8 +17,8 @@ import { IVehicleData } from '@/app/core/application/dto/vehicles/get-vehicles-r
 import { useRouter } from 'next/navigation';
 
 interface IVehiclesForm{
-  action?:string;
-  projectSelected?: IVehicleData;
+  action: string;
+  VehicleSelected?: IVehicleData;
   idVehicle?: number
   propFunction: ()=>void
 }
@@ -46,7 +46,7 @@ const VehicleSchema = yup.object()
 
     })
 
-const VehicleForm:React.FC<IVehiclesForm> = ({propFunction}) => {
+const VehicleForm:React.FC<IVehiclesForm> = ({propFunction, action, idVehicle}) => {
 
   const {
     control,
@@ -84,6 +84,12 @@ const VehicleForm:React.FC<IVehiclesForm> = ({propFunction}) => {
     propFunction();
     router.refresh();
   }
+
+  // const handleEdit = async (data:IVehiclesPost) =>{
+  //   await useVehicleService.editVehicle('projects', idVehicle!, data);
+  //   propFunction();
+  //   router.refresh();
+  // }
 
   const onChange = (e: any)=> {
     if(e.target.files[0]){

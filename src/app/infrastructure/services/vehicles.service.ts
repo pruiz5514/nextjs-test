@@ -55,16 +55,16 @@ export class VehiclesService {
     //     }
     // }
 
-    // async editService (url:string, id:string, body:IServicesPost){
-    //     try{
-    //         const serviceEdited =  await this.httpClient.put<IServicesPostResponse,IServicesPost>(`${url}/${id}`, body);
-    //         successAlert('Editado exitosamente');
-    //         return serviceEdited;
+    async editVehicle(url:string, id:string, body:FormData){
+        try{
+            const serviceEdited =  await this.httpClient.put<any,FormData>(`${url}/${id}`, body);
+            successAlert('Editado exitosamente');
+            return serviceEdited;
 
-    //     } catch(error){
-    //         console.log(error);
-    //         throw error;
+        } catch(error){
+            console.log(error);
+            throw error;
 
-    //     }
-    // }
+        }
+    }
 }
