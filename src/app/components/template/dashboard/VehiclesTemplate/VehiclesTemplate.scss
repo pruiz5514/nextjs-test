@@ -1,0 +1,33 @@
+.vehicles_template-container{
+    width: 100%;
+    min-height: 100vh;
+    padding: 49px 40px 49px 20px;
+
+    .filter_vehilces-container{
+        margin-top: 70px;
+        display: flex;
+        justify-content: space-between;
+        height: 70px;
+
+        .filter_vehilces_inputs-container{
+            display: flex;
+            gap: 30px;
+            .filter_vehilces_input-container{
+                width: 200px;
+            }
+        }
+
+        .filter_vehilces_buttons-container{
+            display: flex;
+            height: 100%;
+            align-items: end;
+            gap: 30px;
+        }
+    }
+
+    
+    .img-table{
+        width: 74px;
+        height: 60px;
+    }
+}

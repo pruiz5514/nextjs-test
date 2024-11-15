@@ -1,0 +1,11 @@
+.vehicles_template_options_buttons-container{
+    width: 1000px;
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    gap: 30px;
+
+    .vehicles_template_options_button-container{
+        width: 214px;
+    }
+}

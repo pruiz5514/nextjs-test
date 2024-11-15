@@ -1,7 +1,7 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 
-const defaultBaseUrl = 'https://communnityvolunteering-production.up.railway.app/api/v1';
+const defaultBaseUrl = 'https://maintenancesystembc-production.up.railway.app/api/v1';
 
 export class HttpClient {
   private baseUrl: string;
@@ -18,7 +18,7 @@ export class HttpClient {
       method: "GET",
       cache: "no-store"
     });
-
+ 
     return this.handleResponse(response);
   }
 
@@ -76,9 +76,9 @@ export class HttpClient {
       "Content-Type" : "application/json"
     };
 
-    // if(session && session.user?.token){
-    //   headers['Authorization'] = `Bearer ${session.user?.token}`
-    // }
+    if(session && session.user?.token){
+      headers['Authorization'] = `Bearer ${session.user?.token}`
+    }
 
     if(searchParams){
       const order = searchParams.order;
@@ -96,6 +96,7 @@ export class HttpClient {
       const errorData = await response.json();
       throw errorData;
     }
+    console.log(response)
 
     return await response.json();
   }
