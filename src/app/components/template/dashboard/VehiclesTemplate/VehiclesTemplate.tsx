@@ -7,6 +7,7 @@ import { Icon } from '@iconify/react/dist/iconify.js'
 import VehciclesTable from '@/app/components/organisms/Tables/VehiclesTable'
 import { IVehiclesResponse } from '@/app/core/application/dto/vehicles/get-vehicles-response.dto'
 import VehicleOptions from '@/app/components/molecules/VehicleOptions/VehicleOptions'
+import Pagination from '@/app/components/molecules/Pagination/Pagination'
 
 
 interface IVehcilesTemplateProps{
@@ -43,9 +44,9 @@ const VehiclesTemplate: React.FC<IVehcilesTemplateProps> = ({data}) => {
 
         <VehicleOptions/>
 
-        <div>
-            <VehciclesTable vehicles={data.data}/>
-        </div>
+        <VehciclesTable vehicles={data.data}/>
+
+        <Pagination data={data}/>
     </div>
   )
 }
