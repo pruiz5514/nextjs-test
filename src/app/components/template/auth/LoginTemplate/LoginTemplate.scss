@@ -1,0 +1,40 @@
+.login_template{
+    width: 100%;
+    min-height: 100vh;
+    background-color: $bg-main;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding: 60px 30px 30px 30px;
+
+    .login_form-container{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-width: 300px;
+        max-width: 650px;
+        gap: 30px;
+        background-color: white;
+        padding: 50px;
+        border-radius: $border-radius-container;
+        box-shadow: $box-shadow;
+
+        .login-header{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            color: $text-purple;
+
+            .car-logo{
+                font-size: 50px;
+                
+            }
+
+            .login-h1{
+                font-size: 26px;
+            }
+        }
+    }
+}
