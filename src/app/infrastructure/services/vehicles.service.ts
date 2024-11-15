@@ -1,5 +1,7 @@
 import { IVehiclesResponse } from "@/app/core/application/dto/vehicles/get-vehicles-response.dto";
 import { HttpClient } from "../utils/client-http";
+import { IVehiclesPost } from "@/app/core/application/dto/vehicles/post-vehicles.dto";
+import { errorAlert, successAlert } from "../utils/alerts";
 
 export class VehiclesService {
     private httpClient: HttpClient;
@@ -19,16 +21,17 @@ export class VehiclesService {
         }
     }
 
-    // async postSevice(url:string, body:IServicesPost){
-    //     try{
-    //         const newService = await this.httpClient.post<IServicesPostResponse, IServicesPost>(url,body);
-    //         return newService;
-    //     }catch(error){
-    //         console.log(error);
-    //         errorAlert("No se pudo crear el servicio, intente luego")
-    //         throw error
-    //     }
-    // }
+    async postVehicle(url:string, body:FormData){
+        try{
+            const newVehicle = await this.httpClient.postBinary<IVehiclesPost>(url,body);
+            successAlert('Vehiculo agregado exitosamente')
+            return newVehicle;
+        }catch(error){
+            errorAlert('No se pudo agregar el vehiculo')
+            console.log(error);
+            throw error
+        }
+    }
 
     // async deleteService(url:string,id:string){
     //     try{

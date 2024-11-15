@@ -3,7 +3,6 @@
 import './VehicleForm.scss'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -13,7 +12,18 @@ import Form from '../../../atoms/Form/Form';
 import { CiLock } from 'react-icons/ci';
 import { ILoginRequest } from '@/app/core/application/dto/auth/login-request.dto';
 import { IVehiclesPost } from '@/app/core/application/dto/vehicles/post-vehicles.dto';
+import { VehiclesService } from '@/app/infrastructure/services/vehicles.service';
+import { IVehicleData } from '@/app/core/application/dto/vehicles/get-vehicles-response.dto';
+import { useRouter } from 'next/navigation';
 
+interface IVehiclesForm{
+  action?:string;
+  projectSelected?: IVehicleData;
+  idVehicle?: number
+  propFunction: ()=>void
+}
+
+const useVehicleService = new VehiclesService('/api');
 
 const VehicleSchema = yup.object()
     .shape({
@@ -24,10 +34,11 @@ const VehicleSchema = yup.object()
             .string()
             .required('Campo obligatorio'),
         year: yup
-            .number()
+            .number().max(2025, 'No puede ser superior a 2025')
             .required('Campo obligatorio'),
+            
         licensePlate: yup
-            .number()
+            .string()
             .required('Campo obligatorio'),
         file: yup
             .mixed<File>()
@@ -35,12 +46,14 @@ const VehicleSchema = yup.object()
 
     })
 
-const VehicleForm = () => {
+const VehicleForm:React.FC<IVehiclesForm> = ({propFunction}) => {
 
   const {
     control,
     handleSubmit,
     // setError,
+    setValue,
+    getValues,
     formState: {errors}
   } = useForm<IVehiclesPost>({
     mode: "onChange",
@@ -48,9 +61,38 @@ const VehicleForm = () => {
     resolver: yupResolver(VehicleSchema),
   })
 
+  const router = useRouter()
+
+  const handleCreate = async (data:IVehiclesPost)=>{
+    const formData = new FormData();
+
+    formData.append('make', data.make);
+    formData.append('model', data.model);
+    formData.append('licensePlate', data.licensePlate);
+    
+    if(data.year){
+      formData.append('year', data.year);
+    }
+    if (getValues('file')) {
+      formData.append("file", getValues('file')!) ;
+    }
+    
+    console.log(formData);
+
+    const response = await useVehicleService.postVehicle('vehicles', formData);
+    console.log(response);
+    propFunction();
+    router.refresh();
+  }
+
+  const onChange = (e: any)=> {
+    if(e.target.files[0]){
+      setValue('file',e.target.files[0])
+    }
+  } 
 
   return (
-    <Form >
+    <Form onSubmit={handleSubmit(handleCreate)}>
       <h1 className='vehicle_form-h1'>Agregar un nuevo vehiculo </h1>
       <div className='vehicle_inputs_form-container'>
 
@@ -67,7 +109,7 @@ const VehicleForm = () => {
 
         <div className='vehicle_input_form-container'>
           <FormFiled<IVehiclesPost>
-                type='texr'
+                type='text'
                 label='Modelo'
                 name = 'model'
                 placeholder='Ingresa la marca'
@@ -98,13 +140,13 @@ const VehicleForm = () => {
             />
         </div>
 
-          <input type="file"  />
+          <input type="file" onChange={onChange}/>
       </div>
 
       <hr />
 
       <div className='vehicle_buttons_form-container'>
-        <Button className='white-button' > Cancelar </Button>
+        <Button className='white-button' onClick={propFunction} > Cancelar </Button>
         <Button className='purple-button' type='submit'> Agregar</Button>
       </div>
 

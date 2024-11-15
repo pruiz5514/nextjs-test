@@ -17,7 +17,7 @@ interface IProps {
 
 export default async function Vehiclepage({searchParams}:IProps) {
   const page = searchParams.page ? parseInt(searchParams.page) : 1;
-  const size = searchParams.size ? parseInt(searchParams.size) : 4;
+  const size = searchParams.size ? parseInt(searchParams.size) : 8;
 
   // const session = await getServerSession(authOptions);
   
