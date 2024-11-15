@@ -1,0 +1,25 @@
+.vehicle_form-h1{
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+    
+}
+
+.vehicle_inputs_form-container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    gap: 15px;
+
+    .vehicle_input_form-container{
+        width: 240px;
+    }
+}
+
+.vehicle_buttons_form-container{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}

@@ -5,6 +5,7 @@ import Button from '../../atoms/Button/Button'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { useState } from 'react';
 import Modal from '../../atoms/Modal/Modal';
+import VehicleForm from '../../organisms/Forms/VehicleForm/VehicleForm';
 
 const VehicleOptions = () => {
   const [modal, setModal] = useState(false);
@@ -21,8 +22,7 @@ const VehicleOptions = () => {
 
         {modal && 
             <Modal propFunction={closeModal}>
-                oee
-              {/* <ProjectsForm action='add' propFunction={closeModal}/> */}
+              <VehicleForm/>
             </Modal>
           }
     </div>
