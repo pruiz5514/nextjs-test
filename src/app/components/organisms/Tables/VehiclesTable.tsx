@@ -6,6 +6,7 @@ import Td from "../../atoms/Table/Td"
 import Th from "../../atoms/Table/Th"
 import Thead from "../../atoms/Table/Thead"
 import Tr from "../../atoms/Table/Tr"
+import TdActions from "../../molecules/TdActions/TdActions"
 
 
 
@@ -36,7 +37,7 @@ const VehciclesTable:React.FC<IVehcilesTable> = ({vehicles}) => {
                         <Td>{String(vehcile.model)}</Td>
                         <Td>{String(vehcile.year)}</Td>
                         <Td>{vehcile.licensePlate}</Td>
-                        {/* <Td> <TdActions data={vehcile}/> </Td> */}
+                        <Td> <TdActions data={vehcile}/> </Td>
                     </Tr>
                 ))}
             </Tbody>

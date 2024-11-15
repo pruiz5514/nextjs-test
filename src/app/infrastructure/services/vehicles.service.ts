@@ -33,17 +33,17 @@ export class VehiclesService {
         }
     }
 
-    // async deleteService(url:string,id:string){
-    //     try{
-    //         const serviceToDelete = await this.httpClient.delete(`${url}/${id}`);
-    //         successAlert('Eliminado exitosamente');
-    //         return serviceToDelete;
-    //     } catch(error){
-    //         console.log(error);
-    //         errorAlert('No se pudo eleminar')
-    //         throw error;
-    //     }
-    // }
+    async deleteVehicle(url:string,id:string){
+        try{
+            const vehicleToDelete = await this.httpClient.delete(`${url}/${id}`);
+            successAlert('Eliminado exitosamente');
+            return vehicleToDelete;
+        } catch(error){
+            console.log(error);
+            errorAlert('No se pudo eleminar')
+            throw error;
+        }
+    }
 
     // async findServiceById (url:string, id:string){
     //     try{
