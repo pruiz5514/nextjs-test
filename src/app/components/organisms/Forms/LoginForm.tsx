@@ -40,22 +40,20 @@ const LoginForm = () => {
   const router = useRouter();
 
   const handleLogin = async (data:ILoginRequest)=>{
-    console.log(data);
-    
-    // try{
-    //   const result = await signIn("credentials", {
-    //     redirect: false,
-    //     email: data.email,
-    //     password: data.password
-    //   })
-    //   if(result?.status === 401){
-    //     alert('Credenciales invalidas')
-    //     return
-    //   }
-    //   router.push('/dashboard/projects')
-    // }catch(error){
-    //   console.log(error)
-    // }
+    try{
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: data.email,
+        password: data.password
+      })
+      if(result?.status === 401){
+        alert('Credenciales invalidas')
+        return
+      }
+      router.push('/dashboard/vehicles')
+    }catch(error){
+      console.log(error)
+    }
   }
   
 
